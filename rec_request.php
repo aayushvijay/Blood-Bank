@@ -28,9 +28,9 @@ align = 'middle'
 <?php echo 'User &nbsp : &nbsp' ?>
 <span class = 'user'>
 <?php echo ucfirst( $user_first_name ) ?></span>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-<a href = 'blood.php'class = 'blood'>Blood Chart</a>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-<span class = 'user1'><?php echo 'Receiver' ?></span>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-<a href = 'logout.php' class = 'logout' alt = 'Logout'>Logout</a>
+<a href='blood.php'class="blood">Blood Chart</a>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+<span class="user1"><?php echo 'Receiver' ?></span>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+<a href = 'logout.php' class="logout" alt = 'Logout'>Logout</a>
 </div>
 <style>
 * {
@@ -84,7 +84,6 @@ align = 'middle'
     border: 1px solid #d73933;
     background-color:#F7F7F7;
     margin-top: 1.5%;
-
 }
 .table th {
 
@@ -96,7 +95,6 @@ align = 'middle'
     text-align:center;
 
 }
-
 .active {
     color:#d73933;
     margin-left:10%;
@@ -115,23 +113,28 @@ align = 'middle'
     display:inline;
     margin-left:10%;
 }
+.status{
+    width:30%;
+}
+.hospital{
+    width: 35%;
+}
 </style>
 <head>
 <title>
-Home | Receiver
+My Requests
 </title>
 </head>
 <body>
-<h2 class = 'active'>Available Blood Samples</h2>
-<a href = 'rec_request.php' class = 'view'><h2 class = 'nonactive'>My Requests</h2></a>
+<a href = 'home.php' class = 'view'><h2 class = 'nonactive'>Available Blood Samples</h2></a>
+<h2 class = 'active'>My Requests</h2>
 <div class = 'table_container'>
 <table class = 'table' cellpadding = '0' cellspacing = '0' border = '0'>
-
 <thead>
 <tr>
-<th>Hospital Name</th>
-<th>Blood Type</th>
-<th> Request Sample</th>
+<th class="hospital">Hospital Name</th>
+<th>Requested Blood Type</th>
+<th class="status">Status</th>
 </tr>
 </thead>
 </body>

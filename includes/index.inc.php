@@ -14,7 +14,6 @@ if ( isset( $_POST['submit'] ) ) {
         if ( !filter_var( $email, FILTER_VALIDATE_EMAIL ) ) {
             header( 'Location: ../index.php?signup=email' );
             exit();
-
         } else {
             $sql = "SELECT * FROM receiver WHERE email='$email' ";
             $result = mysqli_query( $conn, $sql );
@@ -33,7 +32,6 @@ if ( isset( $_POST['submit'] ) ) {
             }
         }
     }
-
 } else {
     header( 'Location: ../index.php' );
     exit();
