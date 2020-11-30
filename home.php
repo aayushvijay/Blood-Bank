@@ -115,6 +115,35 @@ align = 'middle'
     display:inline;
     margin-left:10%;
 }
+/* .search {
+    width:20%;
+    margin-left:9%;
+    height:5%;
+    border:1px solid #d73933;
+    padding:0.5%;
+}
+.search:focus {
+    outline:none;
+    border: 2px solid #d73933;
+} */
+td{
+    border-bottom:1px solid #d73933;
+}
+.row{
+    text-align:center;
+    padding:1.5%;
+    border-right:1px solid #d73933;
+}
+.request{
+    padding:2.5%;
+    border:none;
+    background-color: #d73933;
+    color:white;
+    margin-left: 35%;
+    font-weight:300;
+    font-size:12px;
+    cursor:pointer;
+}
 </style>
 <head>
 <title>
@@ -124,6 +153,8 @@ Home | Receiver
 <body>
 <h2 class = 'active'>Available Blood Samples</h2>
 <a href = 'rec_request.php' class = 'view'><h2 class = 'nonactive'>My Requests</h2></a>
+<!-- <input type = 'text' class = 'search' placeholder = 'Search...' name = 'search' value = "<?php if(isset($_GET['search'])){ echo $_GET['search']; }?>"> -->
+
 <div class = 'table_container'>
 <table class = 'table' cellpadding = '0' cellspacing = '0' border = '0'>
 
@@ -134,4 +165,26 @@ Home | Receiver
 <th> Request Sample</th>
 </tr>
 </thead>
+<tbody>
+    <?php
+$sql = "SELECT fullname,blood FROM add_blood";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    $name = $row['fullname'];
+    $blood = $row['blood'];
+    echo '<tr>';
+    echo '<td class="row">'.$name.'</td>';
+    echo '<td class="row">'.$blood.'</td>';
+    echo '<td><button name="submit" class="request">Request Sample</button></td>';
+    echo '</tr>';
+  }
+} else {
+  echo "0 results";
+}
+?>
+</tbody>
+
 </body>

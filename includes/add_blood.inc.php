@@ -21,3 +21,11 @@ if ( isset( $_POST['submit'] ) ) {
     header( 'Location: ../add_blood.php' );
     exit();
 }
+?>
+<style>
+h3 {
+    position:absolute;
+    top:50%;
+    color:#d73933;
+}
+</style>
