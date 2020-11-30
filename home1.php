@@ -115,6 +115,20 @@ align = 'middle'
     display:inline;
     margin-left:10%;
 }
+td{
+    border-bottom:1px solid #d73933;
+}
+.row{
+    text-align:center;
+    padding:1.5%;
+    border-right:1px solid #d73933;
+}
+h3{
+    position:absolute;
+    font-weight:300;
+    top:45%;
+    left: 48%;
+}
 </style>
 <head>
 <title>
@@ -131,6 +145,29 @@ Home | Hospital
 <tr>
 <th>Blood Type</th>
 <th>Units</th>
+<th>Date</th>
 </tr>
 </thead>
+<tbody>
+    <?php
+$sql = "SELECT * FROM add_blood where fullname='$user'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    $unit = $row['unit'];
+    $blood = $row['blood'];
+    $datetim = $row['datetim'];
+    echo '<tr>';
+    echo '<td class="row">'.$blood.'</td>';
+    echo '<td class="row">'.$unit.'</td>';
+    echo '<td class="row">'.$datetim.'</td>';
+    echo '</tr>';
+  }
+} else {
+  echo "<h3>0 results</h3>";
+}
+?>
+</tbody>
 </body>

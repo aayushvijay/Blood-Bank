@@ -6,15 +6,16 @@ if ( isset( $_POST['submit'] ) ) {
     $name = mysqli_real_escape_string( $conn, $_POST['user'] );
     $blood = mysqli_real_escape_string( $conn, $_POST['blood'] );
     $unit = mysqli_real_escape_string( $conn, $_POST['unit'] );
+    $date = date("Y-m-d H:i");
     //check if input character are valid
     if ( !preg_match( "/^[0-9]*$/", $unit ) ) {
         header( 'Location: ../add_blood.php?units=invalidCharacter' );
         exit();
     } else {
         ///Insert the data into the database
-        $sql = "INSERT INTO add_blood (fullname, blood, unit) VALUES ('$name','$blood', '$unit');";
+        $sql = "INSERT INTO add_blood (fullname, blood, unit, datetim) VALUES ('$name','$blood', '$unit','$date');";
         mysqli_query( $conn, $sql );
-        header( 'Location: ../add_blood.php?AddBloodInfo=success' );
+        header( 'Location: ../home1.php?AddBloodInfo=success' );
         exit();
     }
 } else {
