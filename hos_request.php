@@ -191,7 +191,7 @@ if ( $result->num_rows > 0 ) {
         $rec_blood = $row['rec_blood'];
         $blood_req = $row['blood_req'];
         ?>
-        <form action = '' method = 'POST'>
+        <form action = 'includes/hos_rec.inc.php' method = 'POST'>
         <?php
         echo '<tr>';
         echo '<td class="row">'.$rec_name.'</td>';
