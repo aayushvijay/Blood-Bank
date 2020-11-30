@@ -119,6 +119,20 @@ align = 'middle'
 .hospital{
     width: 35%;
 }
+h3{
+    position:absolute;
+    font-weight:300;
+    top:45%;
+    left: 48%;
+}
+td {
+    border-bottom:1px solid #d73933;
+}
+.row {
+    text-align:center;
+    padding:1.5%;
+    border-right:1px solid #d73933;
+}
 </style>
 <head>
 <title>
@@ -137,4 +151,24 @@ My Requests
 <th class="status">Status</th>
 </tr>
 </thead>
+<tbody>
+<?php
+$sql = "SELECT * FROM requests where rec_name='$user_first_name'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    $hos_name = $row['hos_name'];
+    $blood_req = $row['blood_req'];
+    echo '<tr>';
+    echo '<td class="row">'.$hos_name.'</td>';
+    echo '<td class="row">'.$blood_req.'</td>';
+    echo '</tr>';
+  }
+} else {
+  echo "<h3>0 results</h3>";
+}
+?>
+</tbody>
 </body>

@@ -9,6 +9,7 @@ if ( !isset( $_SESSION['rec_email'] ) )
     header( 'Location:home.php' );
 }
 $email = $_SESSION['rec_email'];
+$blood_rec = $_SESSION['rec_blood'];
 ?>
 <div class = 'topnav'>
 <?php
@@ -115,26 +116,15 @@ align = 'middle'
     display:inline;
     margin-left:10%;
 }
-/* .search {
-    width:20%;
-    margin-left:9%;
-    height:5%;
-    border:1px solid #d73933;
-    padding:0.5%;
-}
-.search:focus {
-    outline:none;
-    border: 2px solid #d73933;
-} */
-td{
+td {
     border-bottom:1px solid #d73933;
 }
-.row{
+.row {
     text-align:center;
     padding:1.5%;
     border-right:1px solid #d73933;
 }
-.request{
+.request {
     padding:2.5%;
     border:none;
     background-color: #d73933;
@@ -143,6 +133,15 @@ td{
     font-weight:300;
     font-size:12px;
     cursor:pointer;
+}
+input{
+    border:none;
+    background-color: #f7f7f7;
+    padding:1% 12%;
+    font-family:'Montserrat',sans-serif;
+}
+input:focus{
+    outline:none;
 }
 </style>
 <head>
@@ -153,8 +152,6 @@ Home | Receiver
 <body>
 <h2 class = 'active'>Available Blood Samples</h2>
 <a href = 'rec_request.php' class = 'view'><h2 class = 'nonactive'>My Requests</h2></a>
-<!-- <input type = 'text' class = 'search' placeholder = 'Search...' name = 'search' value = "<?php if(isset($_GET['search'])){ echo $_GET['search']; }?>"> -->
-
 <div class = 'table_container'>
 <table class = 'table' cellpadding = '0' cellspacing = '0' border = '0'>
 
@@ -166,25 +163,40 @@ Home | Receiver
 </tr>
 </thead>
 <tbody>
-    <?php
-$sql = "SELECT fullname,blood FROM add_blood";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-  // output data of each row
-  while($row = $result->fetch_assoc()) {
-    $name = $row['fullname'];
-    $blood = $row['blood'];
-    echo '<tr>';
-    echo '<td class="row">'.$name.'</td>';
-    echo '<td class="row">'.$blood.'</td>';
-    echo '<td><button name="submit" class="request">Request Sample</button></td>';
-    echo '</tr>';
-  }
+<?php
+$sql = 'SELECT fullname,blood FROM add_blood';
+$result = $conn->query( $sql );
+if ( $result->num_rows > 0 ) {
+    // output data of each row
+    while( $row = $result->fetch_assoc() ) {
+        $name = $row['fullname'];
+        $blood = $row['blood'];
+        ?>
+        <form action = 'includes/rec.inc.php' method = 'POST'>
+        <?php
+        echo '<tr>';
+        echo '<td class="row"><input type="text" name="hos_name" readonly value="'.$name.'"></td>';
+        echo '<td class="row"><input type="text" name="blood_req" readonly value="'.$blood.'"></td>';
+        echo '<td><button name="submit" class="request" id="btn">Request Sample</button></td>';
+        echo '</tr>';
+        ?>
+        </form>
+        <?php
+    }
 } else {
-  echo "0 results";
+    echo '0 results';
 }
 ?>
 </tbody>
 
 </body>
+<?php
+
+?>
+<script>
+
+function button() {
+    document.getElemntById( 'btn' ).disabled = true;
+}
+
+</script>
