@@ -133,6 +133,9 @@ td {
     padding:1.5%;
     border-right:1px solid #d73933;
 }
+.stat{
+    color:#d73933;
+}
 </style>
 <head>
 <title>
@@ -161,9 +164,11 @@ if ($result->num_rows > 0) {
   while($row = $result->fetch_assoc()) {
     $hos_name = $row['hos_name'];
     $blood_req = $row['blood_req'];
+    $status= $row['Status'];
     echo '<tr>';
     echo '<td class="row">'.$hos_name.'</td>';
     echo '<td class="row">'.$blood_req.'</td>';
+    echo '<td class="row stat">'.$status.'</td>';
     echo '</tr>';
   }
 } else {
