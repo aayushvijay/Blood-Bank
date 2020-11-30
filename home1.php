@@ -9,8 +9,7 @@ if ( !isset( $_SESSION['hos_email'] ) )
     header( 'Location:home1.php' );
 }
 $email = $_SESSION['hos_email'];
-$blood_req = $_SESSION['blood_req'];
-$hos_name = $_SESSION['hos_name'];
+
 
 ?>
 <div class = 'topnav'>
