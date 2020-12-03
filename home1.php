@@ -157,10 +157,10 @@ if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
     $unit = $row['unit'];
-    $blood = $row['blood'];
+    $blood_req = $row['blood'];
     $datetim = $row['datetim'];
     echo '<tr>';
-    echo '<td class="row">'.$blood.'</td>';
+    echo '<td class="row">'.$blood_req.'</td>';
     echo '<td class="row">'.$unit.'</td>';
     echo '<td class="row">'.$datetim.'</td>';
     echo '</tr>';

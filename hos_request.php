@@ -116,20 +116,23 @@ align = 'middle'
     margin-left:10%;
 }
 .email {
-    width:30%;
+    width:20%;
 }
 .name {
-    width: 20%;
+    width: 10%;
 }
 td {
     border-bottom:1px solid #d73933;
 }
 .row {
     text-align:center;
-    padding:1.5%;
+    padding:1%;
     border-right:1px solid #d73933;
 }
-h3{
+.row1 {
+    width:10%;
+}
+h3 {
     position:absolute;
     font-weight:300;
     top:45%;
@@ -146,7 +149,7 @@ h3{
     cursor:pointer;
 }
 .remark {
-    width:25%;
+    width:20%;
 }
 .approve {
     padding:2.5%;
@@ -157,6 +160,21 @@ h3{
     font-weight:300;
     font-size:12px;
     cursor:pointer;
+}
+input {
+    border:none;
+    background-color: #f7f7f7;
+    padding:1% 5%;
+    font-family:'Montserrat', sans-serif;
+}
+input:focus {
+    outline:none;
+}
+.row2 {
+    width:18%;
+}
+.row3{
+    width: 18%;
 }
 </style>
 <head>
@@ -175,6 +193,8 @@ View Requests
 <th class = 'email'>E-mail</th>
 <th>Blood Type</th>
 <th>Requested Blood Type</th>
+<th>Date Requested</th>
+<th>Status</th>
 <th>Remarks</th>
 </tr>
 </thead>
@@ -182,7 +202,6 @@ View Requests
 <?php
 $sql = "SELECT * FROM requests where hos_name='$user'";
 $result = $conn->query( $sql );
-
 if ( $result->num_rows > 0 ) {
     // output data of each row
     while( $row = $result->fetch_assoc() ) {
@@ -190,6 +209,8 @@ if ( $result->num_rows > 0 ) {
         $rec_email = $row['rec_email'];
         $rec_blood = $row['rec_blood'];
         $blood_req = $row['blood_req'];
+        $Status = $row['Status'];
+        $date = $row['date'];
         ?>
         <form action = 'includes/hos_rec.inc.php' method = 'POST'>
         <?php
@@ -197,7 +218,9 @@ if ( $result->num_rows > 0 ) {
         echo '<td class="row">'.$rec_name.'</td>';
         echo '<td class="row">'.$rec_email.'</td>';
         echo '<td class="row">'.$rec_blood.'</td>';
-        echo '<td class="row">'.$blood_req.'</td>';
+        echo '<td class="row row3"><input type="text" name="blood_req" readonly value="'.$blood_req.'"></td>';
+        echo '<td class="row row2"><input type="text" name="date" readonly value="'.$date.'"></td>';
+        echo '<td class="row row1">'.$Status.'</td>';
         echo '<td class="remark"><button name="approve" class="approve" id="btn">Approve</button><button name="decline" class="request" id="btn">Decline</button></td>';
         echo '</tr>';
         ?>

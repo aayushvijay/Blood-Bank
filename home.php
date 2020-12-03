@@ -138,7 +138,7 @@ input{
     border:none;
     background-color: #f7f7f7;
     padding:1% 12%;
-    font-family:'Montserrat',sans-serif;
+    font-family:'Montserrat', sans-serif;
 }
 input:focus{
     outline:none;
@@ -172,7 +172,7 @@ if ( $result->num_rows > 0 ) {
         $name = $row['fullname'];
         $blood = $row['blood'];
         ?>
-        <form action = 'includes/rec.inc.php' method = 'POST'>
+        <form action="includes/rec.inc.php" method="POST">
         <?php
         echo '<tr>';
         echo '<td class="row"><input type="text" name="hos_name" readonly value="'.$name.'"></td>';
@@ -188,15 +188,4 @@ if ( $result->num_rows > 0 ) {
 }
 ?>
 </tbody>
-
 </body>
-<?php
-
-?>
-<script>
-
-function button() {
-    document.getElemntById( 'btn' ).disabled = true;
-}
-
-</script>
